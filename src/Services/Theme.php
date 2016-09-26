@@ -113,7 +113,7 @@ class Theme
         return collect($this->finder->getFilesystem()->directories($this->path))
                 ->mapWithKeys(function($item) {
                     $name = basename($item);
-                    return [$name => ucfirst($item)];
+                    return [$name => ucfirst($name)];
                 });
     }
 
