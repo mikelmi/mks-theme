@@ -1,0 +1,20 @@
+{
+    "name": "mikelmi/mks-theme",
+    "description": "Theme service for Laravel",
+    "license": "MIT",
+    "require": {
+        "php": ">=7.0",
+        "laravel/framework": "5.3.*"
+    },
+    "authors": [
+        {
+            "name": "mike_lmi",
+            "email": "mikelmi84@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Mikelmi\\MksTheme\\": "src"
+        }
+    }
+}
