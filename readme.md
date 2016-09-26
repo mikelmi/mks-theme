@@ -4,7 +4,7 @@
 
 1. Install with
 ```
-    composer require "mikelmi/mks-theme"
+    composer require mikelmi/mks-theme:dev-master
 ```
 2. Add the service provider in `config/app.php`, to `providers`:
 ```
