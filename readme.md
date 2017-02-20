@@ -1,8 +1,10 @@
-## Theme Service for Laravel 5
+## Theme Support for Laravel 5
+
+This package supports the management view files and assets under separate folders in Laravel projects.
 
 ## Installation
 
-1. Install with
+1. Installation with
 ```
     composer require mikelmi/mks-theme:dev-master
 ```

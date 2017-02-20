@@ -1,10 +1,13 @@
 {
     "name": "mikelmi/mks-theme",
-    "description": "Theme service for Laravel",
+    "description": "Theme support for Laravel",
+    "keywords": ["laravel", "theme", "layout", "mks"],
     "license": "MIT",
     "require": {
-        "php": ">=7.0",
-        "laravel/framework": "5.4.*"
+        "php": ">=7.0"
+    },
+    "require-dev": {
+        "illuminate/support": ">=5.4"
     },
     "authors": [
         {

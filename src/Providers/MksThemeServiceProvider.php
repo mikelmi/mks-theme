@@ -5,20 +5,20 @@ namespace Mikelmi\MksTheme\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Mikelmi\MksTheme\Services\Theme;
-use Mikelmi\MksTheme\ThemeViewFinder;
+use Mikelmi\MksTheme\View\ThemeViewFinder;
 
 class MksThemeServiceProvider extends ServiceProvider
 {
 
     public function register()
     {
-        $this->app->singleton('view.finder', function($app) {
+        $this->app->singleton('view.finder', function ($app) {
             $paths = $app['config']['view.paths'];
 
             return new ThemeViewFinder($app['files'], $paths);
         });
 
-        $this->app->singleton(Theme::class, function($app) {
+        $this->app->singleton(Theme::class, function ($app) {
             return new Theme($app['view.finder'], $app['config']['theme.path']);
         });
 
@@ -28,10 +28,10 @@ class MksThemeServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/../../config/theme.php' => config_path('theme.php'),
+            __DIR__ . '/../../config/theme.php' => config_path('theme.php'),
         ], 'config');
 
-        if($theme = $this->app['config']['theme.name']) {
+        if ($theme = $this->app['config']['theme.name']) {
             $this->app[Theme::class]->set($theme);
         }
     }
@@ -40,7 +40,6 @@ class MksThemeServiceProvider extends ServiceProvider
     {
         return [
             Theme::class,
-            'theme'
         ];
     }
 }

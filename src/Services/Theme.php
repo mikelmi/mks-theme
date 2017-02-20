@@ -5,7 +5,7 @@ namespace Mikelmi\MksTheme\Services;
 
 
 use Illuminate\Support\Collection;
-use Mikelmi\MksTheme\ThemeViewFinder;
+use Mikelmi\MksTheme\View\ThemeViewFinder;
 
 class Theme
 {
@@ -34,7 +34,7 @@ class Theme
      * @param ThemeViewFinder $finder
      * @param null|string $path
      */
-    public function __construct(ThemeViewFinder $finder, $path = null)
+    public function __construct(ThemeViewFinder $finder, string $path = null)
     {
         $this->finder = $finder;
         $this->path = $path ?: public_path('themes');
@@ -43,9 +43,9 @@ class Theme
 
     /**
      * Set current theme
-     * @param $name
+     * @param string $name
      */
-    public function set($name)
+    public function set(string $name)
     {
         if ($this->theme != $name) {
             $this->theme = $name;
@@ -55,7 +55,7 @@ class Theme
 
     /**
      * Get current theme
-     * @return mixed
+     * @return string|null
      */
     public function get()
     {
@@ -92,7 +92,7 @@ class Theme
      * @param null|string $path
      * @return null|string
      */
-    protected function viewPath($path = null)
+    protected function viewPath(string $path = null)
     {
         if (!$this->theme) {
             return $path;
@@ -108,41 +108,41 @@ class Theme
     /**
      * @return Collection;
      */
-    public function all()
+    public function all(): Collection
     {
         return collect($this->finder->getFilesystem()->directories($this->path))
-                ->mapWithKeys(function($item) {
-                    $name = basename($item);
-                    return [$name => ucfirst($name)];
-                });
+            ->mapWithKeys(function ($item) {
+                $name = basename($item);
+                return [$name => ucfirst($name)];
+            });
     }
 
     /**
      * @param string $path
-     * @param null $secure
+     * @param bool $secure
      * @return string
      */
-    public function asset($path = '', $secure=null)
+    public function asset(string $path = '', bool $secure = null): string
     {
         return asset($this->asset_path($path), $secure);
     }
 
     /**
-     * @param $path
+     * @param string $path
      * @return string
      */
-    public function asset_path($path)
+    public function asset_path(string $path): string
     {
         return $this->pathName . '/' . $this->theme . '/' . trim($path, '/');
     }
 
     /**
-     * @param null $theme
-     * @param null $key
+     * @param string $theme
+     * @param string $key
      * @param null $default
      * @return mixed|null
      */
-    public function info($theme = null, $key = null, $default = null)
+    public function info(string $theme = null, string $key = null, $default = null)
     {
         $name = $theme ?: $this->theme;
 
